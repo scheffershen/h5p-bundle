@@ -1,9 +1,15 @@
 {
-    "name": "jorisdugue/h5p-bundle",
+    "name": "scheffershen/h5p-bundle",
     "type": "symfony-bundle",
     "description": "H5P Bundle for Symfony 4 and Symfony 5",
     "keywords": ["h5p", "symfony", "interactive", "content", "php"],
     "authors": [
+        {
+            "name": "Yi Shen",
+            "email": "yi.shen@universalmedica.com",
+            "homepage": "https://universalmedica.com",
+            "role": "developer"
+        },        
         {
             "name": "Nieck Moorman",
             "email": "nieck@emmedy.com",
