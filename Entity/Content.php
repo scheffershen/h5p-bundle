@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="ContentRepository")
  * @ORM\Table(name="h5p_content")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Content
 {
@@ -18,6 +19,21 @@ class Content
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_id", type="integer")
+     */
+    private $user;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="laboratory_id", type="integer")
+     */
+    private $laboratory;
+
     /**
      * @var Library
      *
@@ -43,6 +59,35 @@ class Content
      * @ORM\Column(name="disabled_features", type="integer", nullable=true)
      */
     private $disabledFeatures;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_published", type="boolean", nullable=false)
+     */
+    protected $isPublished = false;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_deleted", type="boolean", nullable=false)
+     */
+    protected $isDeleted = false;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="create_date", type="datetime", nullable=false)
+     */
+    protected $createDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="update_date", type="datetime", nullable=false)
+     */
+    protected $updateDate;
+
     public function __clone()
     {
         $this->id = null;
@@ -61,6 +106,33 @@ class Content
     {
         $this->id = $id;
     }
+    /**
+     * @return integer
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+    /**
+     * @param integer $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }    
+
+    public function getLaboratory()
+    {
+        return $this->laboratory;
+    }
+
+    public function setLaboratory($laboratory)
+    {
+        $this->laboratory = $laboratory;
+
+        return $this;
+    }
+    
     /**
      * @return Library
      */
@@ -117,4 +189,95 @@ class Content
     {
         $this->disabledFeatures = $disabledFeatures;
     }
+
+    /**
+     * Set createDate
+     *
+     * @ORM\PrePersist
+     */
+    public function setCreateDate()
+    {
+        $this->createDate = new \DateTime();
+
+        return $this;
+    }
+
+    /**
+     * Get createDate
+     *
+     * @return \DateTime
+     */
+    public function getCreateDate(): ? \Datetime
+    {
+        return $this->createDate;
+    }
+
+    /**
+     * Set updateDate
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function setUpdateDate()
+    {
+        $this->updateDate = new \DateTime();
+
+        return $this;
+    }
+
+    /**
+     * Get updateDate
+     *
+     * @return \DateTime
+     */
+    public function getUpdateDate(): ? \Datetime
+    {
+        return $this->updateDate;
+    } 
+
+    /**
+     * Set isDeleted
+     *
+     * @param bool $isDeleted
+     * @return self
+     */
+    public function setIsDeleted(int $isDeleted)
+    {
+        $this->isDeleted = $isDeleted;
+
+        return $this;
+    }
+
+    /**
+     * Get isDeleted
+     *
+     * @return bool
+     */
+    public function getIsDeleted(): ?int
+    {
+        return $this->isDeleted;
+    } 
+
+    /**
+     * Set isPublished
+     *
+     * @param bool $isPublished
+     * @return self
+     */
+    public function setIsPublished($isPublished)
+    {
+        $this->isPublished = $isPublished;
+
+        return $this;
+    }
+
+    /**
+     * Get isPublished
+     *
+     * @return bool
+     */
+    public function getIsPublished()
+    {
+        return $this->isPublished;
+    }          
 }
