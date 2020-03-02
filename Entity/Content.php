@@ -95,6 +95,13 @@ class Content
      */
     protected $updateDate;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="revision", type="integer", options={"default":"0"})
+     */
+    protected $revision = 0;
+
     public function __construct()
     {
         $this->createDate = new \DateTime();
@@ -309,4 +316,27 @@ class Content
     {
         return $this->isPublished;
     }          
+
+    /**
+     * Set revision
+     *
+     * @param int $revision
+     * @return self
+     */
+    public function setRevision(int $revision)
+    {
+        $this->revision = $revision;
+
+        return $this;
+    }
+
+    /**
+     * Get revision
+     *
+     * @return int
+     */
+    public function getRevision(): ?int
+    {
+        return $this->revision;
+    }    
 }
