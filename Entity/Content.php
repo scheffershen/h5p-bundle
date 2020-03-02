@@ -23,14 +23,14 @@ class Content
     /**
      * @var integer
      *
-     * @ORM\Column(name="user_id", type="integer")
+     * @ORM\Column(name="user_id", type="integer", nullable=true)
      */
     private $user;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="laboratory_id", type="integer")
+     * @ORM\Column(name="laboratory_id", type="integer", nullable=true)
      */
     private $laboratory;
 
@@ -63,30 +63,36 @@ class Content
     /**
      * @var bool
      *
-     * @ORM\Column(name="is_published", type="boolean", nullable=false)
+     * @ORM\Column(name="is_published", type="boolean", options={"default":"0"})
      */
     protected $isPublished = false;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="is_deleted", type="boolean", nullable=false)
+     * @ORM\Column(name="is_deleted", type="boolean", options={"default":"0"})
      */
     protected $isDeleted = false;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="create_date", type="datetime", nullable=false)
+     * @ORM\Column(name="create_date", type="datetime")
      */
     protected $createDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="update_date", type="datetime", nullable=false)
+     * @ORM\Column(name="update_date", type="datetime")
      */
     protected $updateDate;
+
+    public function __construct()
+    {
+        $this->createDate = new \DateTime();
+        $this->updateDate = new \DateTime();
+    }
 
     public function __clone()
     {
