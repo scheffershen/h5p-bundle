@@ -23,9 +23,16 @@ class Content
     /**
      * @var integer
      *
-     * @ORM\Column(name="user_id", type="integer", nullable=true)
+     * @ORM\Column(name="create_user_id", type="integer", nullable=true)
      */
-    private $user;
+    private $createUser;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="update_user_id", type="integer", nullable=true)
+     */
+    private $updateUser;
 
     /**
      * @var integer
@@ -112,20 +119,36 @@ class Content
     {
         $this->id = $id;
     }
+
     /**
      * @return integer
      */
-    public function getUser()
+    public function getCreateUser()
     {
-        return $this->user;
+        return $this->createUser;
     }
     /**
-     * @param integer $user
+     * @param integer $createUser
      */
-    public function setUser($user)
+    public function setCreateUser($createUser)
     {
-        $this->user = $user;
+        $this->createUser = $createUser;
     }    
+
+    /**
+     * @return integer
+     */
+    public function getUpdateUser()
+    {
+        return $this->updateUser;
+    }
+    /**
+     * @param integer $updateUser
+     */
+    public function setUpdateUser($updateUser)
+    {
+        $this->updateUser = $updateUser;
+    }   
 
     public function getLaboratory()
     {
