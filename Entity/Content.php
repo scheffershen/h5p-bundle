@@ -21,6 +21,13 @@ class Content
     private $id;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="title", type="string",length=250, nullable=true)
+     */
+    private $title;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="create_user_id", type="integer", nullable=true)
@@ -127,6 +134,16 @@ class Content
         $this->id = $id;
     }
 
+    public function getTitle(): ?string
+    {
+        return trim($this->title);
+    }
+
+    public function setTitle(?string $title): void
+    {
+        $this->title = trim($title);
+    }
+    
     /**
      * @return integer
      */
