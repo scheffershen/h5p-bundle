@@ -24,8 +24,8 @@
         "php": "^7.2.5",
         "doctrine/orm": "^2.7",
         "guzzlehttp/guzzle": "^6.5",
-        "h5p/h5p-core": "dev-master",
-        "h5p/h5p-editor": "dev-master",
+        "h5p/h5p-core": "^1.24",
+        "h5p/h5p-editor": "^1.24",
         "symfony/framework-bundle": "~4.0|~5.0",
         "symfony/serializer": "~4.0|~5.0",
         "twig/extra-bundle": "^3.0"
